@@ -4,12 +4,62 @@ import { useState, useMemo } from "react"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Slider } from "@/components/ui/slider"
-import { Plus, Minus, Info } from "lucide-react"
 import { TeamVisualization } from "@/components/team-visualization"
 import { SuccessGauge } from "@/components/success-gauge"
 import { ComparisonView } from "@/components/comparison-view"
 
 const TEAM_LABELS = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"]
+
+const PlusIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M5 12h14" />
+    <path d="M12 5v14" />
+  </svg>
+)
+
+const MinusIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M5 12h14" />
+  </svg>
+)
+
+const InfoIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <circle cx="12" cy="12" r="10" />
+    <path d="M12 16v-4" />
+    <path d="M12 8h.01" />
+  </svg>
+)
 
 export function ProjectCalculator() {
   const [numTeams, setNumTeams] = useState(2)
@@ -86,7 +136,7 @@ export function ProjectCalculator() {
                   disabled={numTeams <= 1}
                   className="h-8 w-8 bg-transparent"
                 >
-                  <Minus className="h-4 w-4" />
+                  <MinusIcon />
                 </Button>
                 <div className="text-2xl font-bold font-mono w-12 text-center">{numTeams}</div>
                 <Button
@@ -96,7 +146,7 @@ export function ProjectCalculator() {
                   disabled={numTeams >= TEAM_LABELS.length}
                   className="h-8 w-8"
                 >
-                  <Plus className="h-4 w-4" />
+                  <PlusIcon />
                 </Button>
               </div>
             </div>
@@ -117,7 +167,7 @@ export function ProjectCalculator() {
             <div className="flex items-center gap-2 mb-4">
               <h2 className="text-xl font-semibold">Team Success Rate</h2>
               <div className="group relative">
-                <Info className="h-4 w-4 text-muted-foreground cursor-help" />
+                <InfoIcon />
                 <div className="absolute left-0 top-6 w-64 p-3 bg-popover border rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-10 text-sm">
                   The team's historical/baseline success rate (Bayesian prior). This represents their competence and
                   track record before applying friction factors.
@@ -145,7 +195,7 @@ export function ProjectCalculator() {
             <div className="flex items-center gap-2 mb-6">
               <h2 className="text-xl font-semibold">Friction Factors</h2>
               <div className="group relative">
-                <Info className="h-4 w-4 text-muted-foreground cursor-help" />
+                <InfoIcon />
                 <div className="absolute left-0 top-6 w-64 p-3 bg-popover border rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-10 text-sm">
                   Real-world factors that reduce the probability of successful coordination between teams.
                 </div>
